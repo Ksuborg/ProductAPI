@@ -11,6 +11,6 @@ import java.util.List;
 public interface ManufacturerRepository extends JpaRepository<Manufacturer, String> {
     @Query("select manufacturer_name from Manufacturer " +
             "where manufacturer_id in " +
-            "(select manufacturer_id from Product group by manufacturer_id having count(manufacturer_id) > ${num}")
+            "(select manufacturer_id from Product group by manufacturer_id having count(manufacturer_id) > ?1)")
     List<String> findManufacturersByNum(int num);
 }
